@@ -174,8 +174,32 @@ console.log(romanToInteger("LXXVI"));
 
 // Parens Valid
 console.log("\nParens Valid");
+function isValidParentheses(str) {
+    let openCount = 0; // Counter for tracking open parentheses
 
+    for (let i = 0; i < str.length; i++) {
+        const char = str[i];
 
+        if (char === '(') {
+            openCount++; // Increment counter for each opening parenthesis
+        } else if (char === ')') {
+            openCount--; // Decrement counter for each closing parenthesis
+
+            // If openCount is negative, there are more closing than opening parentheses
+            if (openCount < 0) {
+                return false;
+            }
+        }
+    }
+
+    // Check if all parentheses have been properly closed
+    return openCount === 0;
+}
+
+// Example usage
+console.log(isValidParentheses("Y(3(p)p(3)r)s")); // true
+console.log(isValidParentheses("N(0(p)3")); // false
+console.log(isValidParentheses("N(0)t)0(k")); // false
 // Braces Valid
 console.log("\nBraces Valid");
 function isValidSequence(str) {
