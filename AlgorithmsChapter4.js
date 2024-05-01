@@ -244,3 +244,30 @@ function isValidSequence(str) {
 console.log(isValidSequence("W(a{t}s[o(n{ c}o)m]e )h[e{r}e]!")); // true
 console.log(isValidSequence("D (i{a}l[ t]o)n{e")); // false
 console.log(isValidSequence("A (1) s [0(n]0{t) 0}k")); // false
+
+//String: Is Palindrome
+console.log("\nString: Is Palindrome");
+// Create a function that returns a boolean whether the string is a strict palindrome.
+// For "a x a" or "racecar", return true. Do not ignore spaces, punctuation and capitalization:
+// if given "Dud" or "oho!", return false.
+
+function isStrictPalindrome(str) {
+    let left = 0; // Pointer starting from the beginning of the string
+    let right = str.length - 1; // Pointer starting from the end of the string
+
+    while (left < right) {
+        if (str[left] !== str[right]) {
+            return false; // Mismatch found
+        }
+        left++; // Move pointers inward
+        right--;
+    }
+
+    return true; // No mismatches found
+}
+
+// Example usage
+console.log(isStrictPalindrome("a x a")); // true
+console.log(isStrictPalindrome("racecar")); // true
+console.log(isStrictPalindrome("Dud")); // false
+console.log(isStrictPalindrome("oho!")); // false
