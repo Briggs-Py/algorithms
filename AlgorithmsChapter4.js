@@ -271,3 +271,44 @@ console.log(isStrictPalindrome("a x a")); // true
 console.log(isStrictPalindrome("racecar")); // true
 console.log(isStrictPalindrome("Dud")); // false
 console.log(isStrictPalindrome("oho!")); // false
+
+//Longest Palindrome
+console.log("\nLongest Palindrome")
+//For this challenge, we will look not only at the entire string provided, but also at the substrings within it.
+//Return the longest palindrome substring. Given "what up, daddy-o?", return "dad". Given "uh not much", return "u".
+//Include spaces as well. Given "Yikes! My favorite racecar erupted!", return "e racecar e".
+
+function longestPalindrome(s) {
+    let longest = "";
+
+    // Helper function to expand around a given center
+    function expandAroundCenter(left, right) {
+        while (left >= 0 && right < s.length && s[left] === s[right]) {
+            left--;
+            right++;
+        }
+        // Return the found palindromic substring
+        return s.slice(left + 1, right);
+    }
+
+    for (let i = 0; i < s.length; i++) {
+        // Check for palindromes of odd length centered at i
+        let oddPalindrome = expandAroundCenter(i, i);
+        if (oddPalindrome.length > longest.length) {
+            longest = oddPalindrome;
+        }
+
+        // Check for palindromes of even length centered at i and i+1
+        let evenPalindrome = expandAroundCenter(i, i + 1);
+        if (evenPalindrome.length > longest.length) {
+            longest = evenPalindrome;
+        }
+    }
+
+    return longest;
+}
+
+// Example usage
+console.log(longestPalindrome("what up, daddy-o?")); // "dad"
+console.log(longestPalindrome("uh not much")); // "u"
+console.log(longestPalindrome("Yikes! My favorite racecar erupted!")); // "e racecar e"
