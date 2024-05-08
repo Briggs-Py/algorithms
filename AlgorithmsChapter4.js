@@ -339,3 +339,30 @@ console.log(isAlphabetical("zyx")); // false
 console.log(isAlphabetical("aabbbccdd")); // true
 console.log(isAlphabetical(123)); // false
 console.log(isAlphabetical({})); // false
+
+//D Gets Jiggy
+console.log('\nD Gets Jiggy');
+
+//Write a function that accepts as a parameter a string containing someone's name. Return a string containing the
+//following: strip off the first letter of the name, capitalize this new word, and add " to the [first letter]!".
+//Given "Dylan", return "Ylan to the D!".
+
+function transformName(name) {
+    if (typeof name !== 'string' || name.length === 0) {
+        return "Invalid input"; // Handle invalid inputs gracefully
+    }
+
+    // Get the first letter and capitalize it
+    const firstLetter = name[0].toUpperCase();
+
+    // Strip off the first letter and capitalize the rest of the string
+    const restOfName = name.substring(1);
+    const capitalizedRestOfName = restOfName.charAt(0).toUpperCase() + restOfName.slice(1);
+
+    // Construct the response string
+    return `${capitalizedRestOfName} to the ${firstLetter}!`;
+}
+
+// Example usage
+console.log(transformName("Dylan")); // "Ylan to the D!"
+console.log(transformName("alice")); // "Lice to the A!"
