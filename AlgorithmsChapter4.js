@@ -312,3 +312,30 @@ function longestPalindrome(s) {
 console.log(longestPalindrome("what up, daddy-o?")); // "dad"
 console.log(longestPalindrome("uh not much")); // "u"
 console.log(longestPalindrome("Yikes! My favorite racecar erupted!")); // "e racecar e"
+
+// Is Word Alphabetical
+console.log('\nIs Word Alphabetical');
+//Create a function that, when given a string, returns a boolean value determining if all contained letters within the
+//string are in alphabetical order.
+function isAlphabetical(str) {
+    // Check if input is a valid string
+    if (typeof str !== 'string') {
+        return false;
+    }
+
+    for (let i = 0; i < str.length - 1; i++) {
+        // Convert both characters to lower case for case-insensitive comparison
+        if (str[i].toLowerCase() > str[i + 1].toLowerCase()) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Example usage
+console.log(isAlphabetical("abc")); // true
+console.log(isAlphabetical("aBcD")); // true
+console.log(isAlphabetical("zyx")); // false
+console.log(isAlphabetical("aabbbccdd")); // true
+console.log(isAlphabetical(123)); // false
+console.log(isAlphabetical({})); // false
