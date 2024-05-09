@@ -366,3 +366,74 @@ function transformName(name) {
 // Example usage
 console.log(transformName("Dylan")); // "Ylan to the D!"
 console.log(transformName("alice")); // "Lice to the A!"
+
+//Common Suffix
+console.log('\nCommon Suffix')
+
+//Write a function that, when given a word array, returns the largest suffix common to all words in the array.
+//Given ['deforestation', 'citation', 'conviction', 'incarceration'], return 'tion'.
+
+function findLargestCommonSuffix(words) {
+    if (words.length === 0) return '';
+
+    // Start with the last word in the array
+    let suffix = words[words.length - 1];
+
+    for (let i = 0; i < words.length - 1; i++) {
+        while (words[i].substring(words[i].length - suffix.length) !== suffix) {
+            // If the suffix does not match, reduce its length by one from the front
+            if (suffix.length === 0) return '';
+            suffix = suffix.substring(1);
+        }
+    }
+
+    return suffix;
+}
+
+// Example usage
+const words = ['deforestation', 'citation', 'conviction', 'incarceration'];
+console.log(findLargestCommonSuffix(words)); // 'tion'
+
+//Book Index
+console.log('\nBook Index')
+
+//Given a sorted array of pages where a term appears, produce an index string. Consecutive pages should form ranges
+//separated by a hyphen. For example, given [1, 13, 14, 15, 37, 38, 70], return string "1, 13-15, 37-38, 70".
+
+function createIndexString(pages) {
+    if (pages.length === 0) return ''; // Handle empty input
+
+    let result = ''; // Initialize the result string
+    let start = pages[0]; // Start of the current range
+    let end = pages[0]; // End of the current range
+
+    for (let i = 1; i < pages.length; i++) {
+        if (pages[i] === end + 1) {
+            // Continue the current range
+            end = pages[i];
+        } else {
+            // Finish the current range and add it to the result
+            if (start === end) {
+                result += `${start}, `;
+            } else {
+                result += `${start}-${end}, `;
+            }
+            // Start a new range
+            start = pages[i];
+            end = pages[i];
+        }
+    }
+
+    // Add the last range or number to the result
+    if (start === end) {
+        result += `${start}`;
+    } else {
+        result += `${start}-${end}`;
+    }
+
+    return result;
+}
+
+// Example usage
+const pages = [1, 13, 14, 15, 37, 38, 70];
+console.log(createIndexString(pages)); // "1, 13-15, 37-38, 70"
