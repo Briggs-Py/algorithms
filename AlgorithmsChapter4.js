@@ -437,3 +437,31 @@ function createIndexString(pages) {
 // Example usage
 const pages = [1, 13, 14, 15, 37, 38, 70];
 console.log(createIndexString(pages)); // "1, 13-15, 37-38, 70"
+
+//Drop the Mike
+console.log("\nDrop the Mike")
+
+//Create a standalone function that accepts an input string, removes leading and trailing white space (at beginning
+//and end only), capitalizes the first letter of every word, and returns that string. If original string contains the
+//word "Mike" anywhere, immediately return "stunned silence" instead.
+
+function processString(input) {
+    // Check for the presence of "Mike" in the string (instructions specifically say if original string contains "Mike",
+    // not if string contains "Mike" after manipulation).
+    if (input.indexOf("Mike") !== -1) {
+        return "stunned silence";
+    }
+
+    // Trim leading and trailing whitespace
+    let trimmed = input.trim();
+
+    // Capitalize and return the first letter of each word
+    return trimmed.split(' ').map(word => {
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    }).join(' ');
+}
+
+// Example usage
+console.log(processString("   hello world   ")); // "Hello World"
+console.log(processString("this is a test for Mike in the text")); // "stunned silence"
+console.log(processString("example input here")); // "Example Input Here"
