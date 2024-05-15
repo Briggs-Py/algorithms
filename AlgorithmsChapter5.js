@@ -90,3 +90,40 @@ function front(head) {
 
 let frontVal = front(head);
 console.log(frontVal);
+
+//Singly Linked Lists - SLinks
+//SList: Length
+console.log('\nSList: Length')
+//Create a function that accepts a pointer to the first list node, and returns number of nodes in that list.
+
+function sListLength(head) {
+    let length = 0;
+    let current = head
+    while( current !== null) {
+        length++;
+        current = current.next;
+    }
+    return length;
+}
+
+console.log(sListLength(head));
+
+//SList: Display
+console.log('\nSList: Display')
+//Create display(node) for debugging that returns a string containing all list values.
+
+function display(node) {
+    let str = '';
+    while(node !== null) {
+        if(node.next === null) {
+            str+=`${node.val}`;
+        }
+        else {
+            str+=`${node.val}, `;
+        }
+        node=node.next;
+    }
+    return str;
+}
+
+console.log(display(head));
