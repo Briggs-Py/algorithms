@@ -465,3 +465,4 @@ function processString(input) {
 console.log(processString("   hello world   ")); // "Hello World"
 console.log(processString("this is a test for Mike in the text")); // "stunned silence"
 console.log(processString("example input here")); // "Example Input Here"
+
