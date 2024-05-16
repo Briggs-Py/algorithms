@@ -127,3 +127,63 @@ function display(node) {
 }
 
 console.log(display(head));
+
+//SList: Max
+console.log("\nSList: Max")
+//Create a function max(node) to return the largest value.
+
+function max(node) {
+    if(node === null) {
+        return null;
+    }
+    let max = node.val;
+    while(node !== null) {
+        if(node.val > max) {
+            max = node.val;
+        }
+        node=node.next;
+    }
+    return max;
+}
+
+console.log(max(head));
+
+//SList: Min
+console.log("\nSList: Min")
+//Create a function min(node) to return the smallest value.
+
+function min(node) {
+    if(node === null) {
+        return null;
+    }
+    let min = node.val;
+    while(node !== null) {
+        if(node.val < min) {
+            min = node.val;
+        }
+        node=node.next;
+    }
+    return min;
+}
+
+console.log(min(head));
+
+//SList: Average
+console.log("\nSList: Average")
+//Create a function average(node) to return the average value.
+
+function average(node) {
+    if(node === null) {
+        return null;
+    }
+    let total = 0;
+    let count = 0;
+    while(node !== null) {
+        total+=node.val;
+        count++;
+        node=node.next;
+    }
+    return(total/count);
+}
+
+console.log(average(head));
