@@ -221,3 +221,22 @@ function removeBack(node) {
 }
 
 console.log(removeBack(head));
+
+//SList: Remove Back
+console.log('\nSList: Remove Back')
+//Create a function that creates a ListNode with given value and inserts it at the end of a linked list.
+
+function addBack(node, val) {
+    let newNode = new ListNode(val);
+    let list = node;
+    while(node.next !== null){
+        node=node.next;
+    }
+    node.next = newNode;
+    return list;
+}
+
+console.log(addBack(head, 1));
+
+
+ß
