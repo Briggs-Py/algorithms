@@ -187,3 +187,37 @@ function average(node) {
 }
 
 console.log(average(head));
+
+//SList: Back
+console.log('\nSList: Back')
+//Create a function that accepts a ListNode pointer and returns the last value in the list.
+
+function back(node) {
+    if(node === null) {
+        return null;
+    }
+    while(node.next !== null) {
+        node=node.next;
+    }
+    return(node.val);
+}
+
+console.log(back(head));
+
+//SList: Remove Back
+console.log('\nSList: Remove Back')
+//Create a standalone function that removes the last ListNode in the list and returns the new list.
+
+function removeBack(node) {
+    if(node === null || node.next === null) {
+        return null;
+    }
+    let list = node;
+    while(node.next.next !== null) {
+        node=node.next;
+    }
+    node.next = null;
+    return list;
+}
+
+console.log(removeBack(head));
