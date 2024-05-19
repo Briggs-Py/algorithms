@@ -217,13 +217,14 @@ function removeBack(node) {
         node=node.next;
     }
     node.next = null;
-    return list;
+    return display(list);
+    //Remove the display function to return the actual list; easier to show list in log with display function.
 }
 
 console.log(removeBack(head));
 
 //SList: Remove Back
-console.log('\nSList: Remove Back')
+console.log('\nSList: Add Back')
 //Create a function that creates a ListNode with given value and inserts it at the end of a linked list.
 
 function addBack(node, val) {
@@ -233,10 +234,88 @@ function addBack(node, val) {
         node=node.next;
     }
     node.next = newNode;
-    return list;
+    return display(list);
+    //Remove the display function to return the actual list; easier to show list in log with display function.
 }
 
 console.log(addBack(head, 1));
 
+//SList: Move Min to Front
+console.log('\nSList: Move Min to Front')
+//Create a function that locates the minimum value in a linked list, and moves that node to the front of the list.
+//Return the new list, with all nodes still present.
 
-ß
+function moveMinToFront(node) {
+    if (node === null || node.next === null) {
+        return null;
+    }
+    let minNode = node;
+    let current = node;
+    let prevMin = null;
+    let prev = null;
+
+    // Traverse the list to find the minimum node
+    while (current !== null) {
+        if (current.val < minNode.val) {
+            minNode = current;
+            prevMin = prev;
+        }
+        prev = current;
+        current = current.next;
+    }
+
+    // Relocate minimum node and adjust node links
+    if (minNode !== node) {
+        prevMin.next = minNode.next;
+        minNode.next = head;
+        head = minNode;
+    }
+    return head;
+}
+
+console.log(moveMinToFront(head));
+
+//SList: Move Max to Back
+console.log('\nSList: Move Max to Back')
+//Create a function that locates the maximum value in a linked list, and moves that node to the back of the list.
+//Return the new list, with all nodes still present.
+
+function moveMaxToBack(node) {
+    if (node === null || node.next === null) {
+        return null;
+    }
+    let maxNode = node;
+    let current = node;
+    let lastNode = null;
+    let prevMax = null;
+    let prev = null;
+
+    // Traverse the list to find the maximum node
+    while (current !== null) {
+        if (current.val > maxNode.val) {
+            maxNode = current;
+            prevMax = prev;
+        }
+        if(current.next === null) {
+            lastNode = current;
+        }
+        prev = current;
+        current = current.next;
+    }
+
+    // Relocate maximum node and adjust node links
+    if (maxNode.next !== null) {
+        if(maxNode === node) {
+            node = maxNode.next;
+        } else {
+            prevMax.next = maxNode.next;
+        }
+        lastNode.next = maxNode;
+        maxNode.next = null;
+    }
+    return display(node);
+    //Remove the display function to return the actual list; easier to show list in log with display function.
+}
+
+console.log(moveMaxToBack(head));
+
