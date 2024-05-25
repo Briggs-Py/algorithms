@@ -151,7 +151,7 @@ function removeMinimums(queue) {
     }
 }
 
-//Create New Queue and Test Cases
+//Create New Queue and Test Logs
 let queue = new SLQueue();
 let queue2 = new SLQueue();
 queue.enqueue(1);
