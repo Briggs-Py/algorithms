@@ -86,3 +86,35 @@ floodFill(canvas, start, newColor);
 console.log("Canvas after flood fill:");
 console.log(canvas);
 
+//Recursive Fibonacci
+console.log("\nRecursive Fibonacci:");
+//Write rFib(num). Recursively compute and return nth Fibonacci value.
+function rFib(num) {
+  if (num === 0) {
+    return 0;
+  } else if (num === 1) {
+    return 1;
+  } else {
+    return rFib(num - 1) + rFib(num - 2);
+  }
+}
+
+console.log(rFib(10));
+
+//Recursive Tribonacci
+console.log("\nRecursive 'Tribonacci':");
+//Write rTrib(num). Recursively compute and return nth 'Tribonacci' value, adding the previous three values instead of
+//two.
+function rTrib(num) {
+  if (num === 0) {
+    return 0;
+  } else if (num === 1) {
+    return 1;
+  } else if (num === 2) {
+    return 1;
+  } else {
+    return rTrib(num - 1) + rTrib(num - 2) + rTrib(num - 3);
+  }
+}
+
+console.log(rTrib(10));
