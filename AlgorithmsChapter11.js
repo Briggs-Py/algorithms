@@ -42,6 +42,27 @@ class BST {
       }
     }
   }
+
+  //BST: Contains
+  //Create a contains(val) method on BST that returns whether the tree contains a given value. Take advantage of the
+  //BST structure to make this a much more rapid operation than SList.contains() would be.
+
+  contains(val) {
+    let current = this.root;
+    while(current !== null) {
+      if( current.value === val) {
+        return true;
+      }
+      else if (val < current.value) {
+        current = current.left;
+      }
+      else {
+        current = current.right;
+      }
+    }
+    return false;
+  }
+
 }
 
 let bst = new BST();
@@ -59,4 +80,10 @@ function printInOrder(node) {
     printInOrder(node.right);
 }
 
+console.log("BST: Add");
 printInOrder(bst.root);
+
+console.log("\nBST: Contains");
+console.log(bst.contains(12));
+console.log(bst.contains(20));
+console.log(bst.contains(5));
