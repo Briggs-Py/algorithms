@@ -66,7 +66,7 @@ class BST {
   //BST: Min
   //Create a min() method on the BST class that returns the smallest value found in the BST.
   min() {
-    if(this.root === null) {
+    if(!this.root) {
       return null;
     }
 
@@ -77,7 +77,39 @@ class BST {
     return current.value
   }
 
-  
+  //BST: Max
+  //Create a max() method on the BST class that returns the largest value found in the BST.
+  max() {
+    if(!this.root) {
+      return null;
+    }
+
+    let current = this.root
+    while(current.right !== null) {
+      current = current.right
+    }
+    return current.value
+  }
+
+  //BST: Size
+  //Write a size() method that returns the number of nodes (values) contained in the tree.
+  size() {
+    return this._size(this.root);
+  }
+
+  _size(node) {
+    if (node === null) {
+      return 0;
+    }
+    return 1 + this._size(node.left) + this._size(node.right);
+  }
+
+  //BST: Is Empty
+  //Create an isEmpty() method to return whether the BST is empty (whether it contains no values).
+  isEmpty() {
+    return !this.root;
+  }
+
 
 }
 
@@ -106,3 +138,12 @@ console.log(bst.contains(5));
 
 console.log("\nBST: Min");
 console.log(bst.min());
+
+console.log("\nBST: Max");
+console.log(bst.max());
+
+console.log("\nBST: Size");
+console.log(bst.size());
+
+console.log("\nBST: Is Empty");
+console.log(bst.isEmpty());
