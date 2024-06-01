@@ -63,6 +63,22 @@ class BST {
     return false;
   }
 
+  //BST: Min
+  //Create a min() method on the BST class that returns the smallest value found in the BST.
+  min() {
+    if(this.root === null) {
+      return null;
+    }
+
+    let current = this.root
+    while(current.left !== null) {
+      current = current.left
+    }
+    return current.value
+  }
+
+  
+
 }
 
 let bst = new BST();
@@ -87,3 +103,6 @@ console.log("\nBST: Contains");
 console.log(bst.contains(12));
 console.log(bst.contains(20));
 console.log(bst.contains(5));
+
+console.log("\nBST: Min");
+console.log(bst.min());
