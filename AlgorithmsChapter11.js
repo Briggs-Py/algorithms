@@ -110,6 +110,21 @@ class BST {
     return !this.root;
   }
 
+  //BST: Height
+  //Build a height() method on the BST object that returns the total height of the tree - the longest sequence of nodes
+  //from root node to leaf node.
+  height() {
+    return this._height(this.root);
+  }
+
+  _height(node) {
+    if (node === null) {
+      return -1;  // Base case for empty tree or leaf node
+    }
+    const leftHeight = this._height(node.left);
+    const rightHeight = this._height(node.right);
+    return 1 + Math.max(leftHeight, rightHeight);
+  }
 
 }
 
@@ -120,6 +135,13 @@ bst.add(20);
 bst.add(8);
 bst.add(12);
 bst.add(10);
+bst.add(35);
+bst.add(9);
+bst.add(11);
+bst.add(24);
+bst.add(33);
+bst.add(36);
+bst.add(45);
 
 function printInOrder(node) {
     if (!node) return;
@@ -147,3 +169,6 @@ console.log(bst.size());
 
 console.log("\nBST: Is Empty");
 console.log(bst.isEmpty());
+
+console.log("\nBST: Height");
+console.log(bst.height());
