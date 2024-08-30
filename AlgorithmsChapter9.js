@@ -118,3 +118,4 @@ function rTrib(num) {
 }
 
 console.log(rTrib(10));
+
