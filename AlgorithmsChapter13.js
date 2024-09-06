@@ -28,6 +28,7 @@ const array1 = [77, 22, 11, 22];
 const array2 = [2, 6, 7, 2, 6, 2];
 const mergedArray = mergeAlternating(array1, array2);
 console.log("Merged array:", mergedArray);
+console.log("\n");
 
 //Merge Sorted Arrays
 //Efficiently merge two already-sorted arrays into a new sorted array containing the multiset of all values.
@@ -61,6 +62,7 @@ const array3 = [1,2,2,2,7];
 const array4 = [2,2,6,6,7];
 const mergedSortedArr = mergeSorted(array3, array4);
 console.log("Merged array:", mergedSortedArr);
+console.log("\n");
 
 //Minimal Three-Array Range
 //Given three separately sorted arrays, determine the value from each array that creates the smallest range, and return
@@ -119,3 +121,32 @@ const arr2 = [3, 10, 12];
 const arr3 = [5, 10, 13, 17, 23];
 const result = findSmallestRange(arr1, arr2, arr3);
 console.log("Smallest range:", result); // Should return {min: 3, max: 5}
+console.log("\n");
+
+//Intersect Sorted Arrays
+//Efficiently combine two sorted arrays into an array containing the sorted multiset intersection of the two.
+//Example: given [1,2,2,2,7] and [2,2,6,6,7], return [2,2,7]
+
+function findSortedIntersection(array1, array2) {
+    let result= [];
+    let i = 0, j = 0;
+
+    while (i < array1.length && j < array2.length) {
+        if (array1[i] < array2[j]) {
+            i++;
+        } else if (array1[i] > array2[j]) {
+            j++;
+        } else {
+            result.push(array1[i]);
+            i++;
+            j++;
+        }
+    }
+    return result;
+}
+
+// Example usage:
+const intersection = findSortedIntersection(array3, array4);
+console.log("Intersection:", intersection);  // Outputs: [2, 2, 7]
+console.log("\n");
+
