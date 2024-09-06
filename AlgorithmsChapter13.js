@@ -177,3 +177,31 @@ function findSortedIntersectionDedupe(array1, array2) {
 const intersection2 = findSortedIntersectionDedupe(array3, array4);
 console.log("Intersection:", intersection2);  // Outputs: [2, 7]
 console.log("\n");
+
+//Union Sorted Arrays
+//Efficiently combine two already sorted arrays into a new sorted array containing the multiset union.
+//Example: given [1,2,2,2,7] and [2,2,6,6,7], return [1,2,2,2,6,6,7].
+
+function findSortedUnion(array1, array2) {
+    let result= [];
+    let i = 0, j = 0;
+
+    while (i < array1.length && j < array2.length) {
+        if (array1[i] === array2[j]) {
+            result.push(array1[i]);
+            i++;
+            j++;
+        } else if (array1[i] < array2[j]) {
+            result.push(array1[i]);
+            i++;
+        } else {
+            result.push(array2[j])
+            j++;
+        }
+    }
+    return result;
+}
+
+const union = findSortedUnion(array3, array4);
+console.log("Union:", union);  // Outputs: [2, 7]
+console.log("\n");
