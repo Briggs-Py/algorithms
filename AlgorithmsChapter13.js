@@ -61,3 +61,61 @@ const array3 = [1,2,2,2,7];
 const array4 = [2,2,6,6,7];
 const mergedSortedArr = mergeSorted(array3, array4);
 console.log("Merged array:", mergedSortedArr);
+
+//Minimal Three-Array Range
+//Given three separately sorted arrays, determine the value from each array that creates the smallest range, and return
+//the min and max of that range. All three of the arrays must have a value within the range.
+//Example: given ([1,2,4,15], [3,10,12], [5,10,13,17,23]), return {min:3,max:5}.
+
+function findSmallestRange(arr1, arr2, arr3) {
+    let minRange = { min: 0, max: Infinity };
+    let entries = [
+        { value: arr1[0], index: 0, fromArray: 1 },
+        { value: arr2[0], index: 0, fromArray: 2 },
+        { value: arr3[0], index: 0, fromArray: 3 }
+    ];
+    let currentMax = Math.max(arr1[0], arr2[0], arr3[0]);
+
+    // Function to get index of the entry with the minimum value
+    function getMinIndex(entries) {
+        if (entries[0].value <= entries[1].value && entries[0].value <= entries[2].value) return 0;
+        if (entries[1].value <= entries[0].value && entries[1].value <= entries[2].value) return 1;
+        return 2;
+    }
+
+    while (true) {
+        let minIndex = getMinIndex(entries);
+        let minElement = entries[minIndex];
+
+        // Check if current range is smaller
+        let currentRange = currentMax - minElement.value;
+        if (currentRange < minRange.max - minRange.min) {
+            minRange.min = minElement.value;
+            minRange.max = currentMax;
+        }
+
+        // Increment index in the array of the minimum element
+        if (minElement.fromArray === 1) {
+            if (minElement.index + 1 >= arr1.length) break;
+            entries[minIndex] = { value: arr1[minElement.index + 1], index: minElement.index + 1, fromArray: 1 };
+        } else if (minElement.fromArray === 2) {
+            if (minElement.index + 1 >= arr2.length) break;
+            entries[minIndex] = { value: arr2[minElement.index + 1], index: minElement.index + 1, fromArray: 2 };
+        } else {
+            if (minElement.index + 1 >= arr3.length) break;
+            entries[minIndex] = { value: arr3[minElement.index + 1], index: minElement.index + 1, fromArray: 3 };
+        }
+
+        // Update current maximum if necessary
+        currentMax = Math.max(currentMax, entries[minIndex].value);
+    }
+
+    return minRange;
+}
+
+// Example usage:
+const arr1 = [1, 2, 4, 15];
+const arr2 = [3, 10, 12];
+const arr3 = [5, 10, 13, 17, 23];
+const result = findSmallestRange(arr1, arr2, arr3);
+console.log("Smallest range:", result); // Should return {min: 3, max: 5}
