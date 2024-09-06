@@ -125,7 +125,7 @@ console.log("\n");
 
 //Intersect Sorted Arrays
 //Efficiently combine two sorted arrays into an array containing the sorted multiset intersection of the two.
-//Example: given [1,2,2,2,7] and [2,2,6,6,7], return [2,2,7]
+//Example: given [1,2,2,2,7] and [2,2,6,6,7], return [2,2,7].
 
 function findSortedIntersection(array1, array2) {
     let result= [];
@@ -150,3 +150,30 @@ const intersection = findSortedIntersection(array3, array4);
 console.log("Intersection:", intersection);  // Outputs: [2, 2, 7]
 console.log("\n");
 
+//Intersect Sorted Arrays (dedupe)
+//Efficiently combine two sorted multiset arrays into an array containing the sorted set intersection of the two.
+//Example: given [1,2,2,2,7] and [2,2,6,6,7], return [2,7].
+
+function findSortedIntersectionDedupe(array1, array2) {
+    let result= [];
+    let i = 0, j = 0;
+
+    while (i < array1.length && j < array2.length) {
+        if (array1[i] === array2[j]) {
+            if (result.length === 0 || result[result.length - 1] !== array1[i]) {
+                result.push(array1[i]);
+            }
+            i++;
+            j++;
+        } else if (array1[i] < array2[j]) {
+            i++;
+        } else {
+            j++;
+        }
+    }
+    return result;
+}
+
+const intersection2 = findSortedIntersectionDedupe(array3, array4);
+console.log("Intersection:", intersection2);  // Outputs: [2, 7]
+console.log("\n");
